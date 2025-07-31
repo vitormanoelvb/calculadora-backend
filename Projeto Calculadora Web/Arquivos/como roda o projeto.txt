@@ -1,0 +1,12 @@
+1. Instale o Node.js
+2. Instale o Visual Studio Code (VS Code)
+3. Instale o banco de dados MySQL/PHPMyAdmin e utilize o código SQL anexado para criar o banco
+4. Instale o Insomnia e importe o arquivo "Insomnia_2025-07-31" para dentro após criar a pasta "Projeto"
+
+5. Abra o projeto no VS Code, abra o terminal dentro da pasta do projeto e execute:
+   npm start
+   (certifique-se de que o banco de dados esteja rodando em conjunto)
+
+6. Acesse o projeto em: http://localhost:3000/
+
+Aproveite e Divirta-se! 🚀
