@@ -1,0 +1,109 @@
+<!DOCTYPE html> 
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Configurações</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .config-container {
+      text-align: center;
+    }
+
+    .config-opcoes {
+      margin: 20px 0;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .config-opcoes label {
+      font-size: 16px;
+      color: inherit;
+    }
+
+    .config-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+      margin-top: 20px;
+    }
+
+    .config-buttons button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body id="body">
+  <div class="config-container">
+    <h1>⚙️ Configurações</h1>
+    <p>Marque a opção desejada:</p>
+
+    <div class="config-opcoes">
+      <label>
+        <input type="checkbox" id="temaToggle"> Ativar modo claro
+      </label>
+      <label>
+        <input type="checkbox" id="responsivoToggle"> Ativar modo responsivo
+      </label>
+    </div>
+
+    <div class="config-buttons">
+      <button onclick="limparHistorico()">🗑 Limpar Histórico</button>
+      <button onclick="voltar()">⬅️ Voltar para a Calculadora</button>
+    </div>
+  </div>
+
+  <script>
+    const temaToggle = document.getElementById("temaToggle");
+    const responsivoToggle = document.getElementById("responsivoToggle");
+
+    function aplicarConfiguracoes() {
+      const tema = localStorage.getItem("tema");
+      const responsivo = localStorage.getItem("responsivo");
+
+      if (tema === "claro") {
+        document.body.classList.add("tema-claro");
+        temaToggle.checked = true;
+      } else {
+        document.body.classList.remove("tema-claro");
+        temaToggle.checked = false;
+      }
+
+      if (responsivo === "ativado") {
+        document.body.classList.add("modo-responsivo");
+        responsivoToggle.checked = true;
+      } else {
+        document.body.classList.remove("modo-responsivo");
+        responsivoToggle.checked = false;
+      }
+    }
+
+    temaToggle.addEventListener("change", () => {
+      const temaEscolhido = temaToggle.checked ? "claro" : "escuro";
+      localStorage.setItem("tema", temaEscolhido);
+      aplicarConfiguracoes();
+    });
+
+    responsivoToggle.addEventListener("change", () => {
+      const ativado = responsivoToggle.checked ? "ativado" : "desativado";
+      localStorage.setItem("responsivo", ativado);
+      aplicarConfiguracoes();
+    });
+
+    function limparHistorico() {
+      if (confirm("Tem certeza que deseja apagar todo o histórico?")) {
+        fetch('/api/calculadora/limpar', { method: 'DELETE' })
+          .then(() => alert("Histórico apagado com sucesso!"));
+        }
+      }
+    function voltar() {
+      window.location.href = "index.html";
+    }
+
+    window.onload = aplicarConfiguracoes;
+  </script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+{
+  "name": "calculadora-web",
+  "version": "1.0.0",
+  "description": "Calculadora Web com histórico salvo em MySQL (Node.js + Express)",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "Vitor Manoel Vidal Braz",
+  "license": "MIT",
+  "type": "commonjs",
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "mysql": "^2.18.1"
+  }
+}
